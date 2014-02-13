@@ -7,9 +7,9 @@ read
 
 set -x
 
-#. configure
-#make
-#make install
+. configure
+make
+make install
 rm -rf install/minimal
 mkdir -p install/minimal
 cp -a install/HDE/*/lib install/minimal
