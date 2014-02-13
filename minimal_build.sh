@@ -1,15 +1,14 @@
 #!/bin/bash
 
-set -e
 echo "WARNING: this script is brittle; be careful."
 echo "Press any key to continue (and hope for the best)."
 read
 
-set -x
 
 . configure
 make
 make install
+set -x
 rm -rf install/minimal
 mkdir -p install/minimal
 cp -a install/HDE/*/lib install/minimal
