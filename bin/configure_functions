@@ -462,9 +462,9 @@ get_abstraction_header_dirs ()
     SPLICE_REAL_TARGET=$SPLICE_TARGET
     set_var SPLICE_TARGET $SPLICE_HOST
     # ... to read the OS abstration headers for the host 'target'
-    set_var OSPL_HOST_HEADERS `make get_target_os_header_dir`
+    set_var OSPL_HOST_HEADERS `make --no-print-directory get_target_os_header_dir`
     # ... then set SPLICE_TARGET correctly & repeat
     set_var SPLICE_TARGET $SPLICE_REAL_TARGET
-    set_var OSPL_TARGET_HEADERS `make get_target_os_header_dir`
+    set_var OSPL_TARGET_HEADERS `make --no-print-directory get_target_os_header_dir`
     popd > /dev/null
 }
