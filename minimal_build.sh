@@ -1,11 +1,11 @@
 #!/bin/bash
 
-echo "WARNING: this script is brittle; be careful."
-echo "Press any key to continue (and hope for the best)."
-read
+#echo "WARNING: this script is brittle; be careful."
+#echo "Press any key to continue (and hope for the best)."
+#read
 
-
-. configure
+# Allow the caller to specify the build type on the command line
+. configure $*
 make
 make install
 set -x
