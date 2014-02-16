@@ -8,15 +8,15 @@ add_custom_target(build ALL
                   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 # To install, cherry-pick some stuff
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/lib
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/lib/
         DESTINATION lib)
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/include
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/include/
         DESTINATION include)
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/etc
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/etc/
         DESTINATION etc)
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/bin
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/bin/
         DESTINATION bin)
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/share
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/share/
         DESTINATION share)
 
 # Set up CPack to produce a source tarball.
