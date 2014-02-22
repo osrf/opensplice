@@ -23,7 +23,7 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/include/
         DESTINATION include)
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/etc/
         DESTINATION etc)
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/bin/
+install(PROGRAMS ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/bin/cppgen ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/bin/idlpp
         DESTINATION bin)
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/share/
         DESTINATION share)
