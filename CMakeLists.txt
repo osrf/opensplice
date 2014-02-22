@@ -2,9 +2,18 @@
 cmake_minimum_required(VERSION 2.8)
 project(opensplice)
 
+# Hacky, but will work for now
+if(APPLE)
+  set(platform "x86_64.darwin10_clang-release")
+elseif(WIN32)
+  message(FATAL_ERROR "Windows not yet supported")
+else()
+  set(platform "x86_64.linux2.6-release")
+endif()
+
 # To build, run our bash wrapper script
 add_custom_target(build ALL
-                  COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/minimal_build.sh x86_64.linux2.6-release
+                  COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/minimal_build.sh ${platform}
                   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 # To install, cherry-pick some stuff
