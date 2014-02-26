@@ -11,7 +11,7 @@ make install
 set -x
 rm -rf install/minimal
 mkdir -p install/minimal
-cp -a lib/* install/minimal/lib
+cp -aL lib/* install/minimal/lib
 mkdir -p install/minimal/include
 cp -a install/HDE/*/include install/minimal/include/opensplice
 mkdir -p install/minimal/etc
