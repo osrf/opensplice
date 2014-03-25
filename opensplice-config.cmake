@@ -65,7 +65,7 @@ endif()
 # hack
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/setup.sh "export OSPL_URI=file:///${OPENSPLICE_PREFIX}/etc/opensplice/config/ospl.xml\n")
 if(APPLE)
-  file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/setup.sh "export DYLD_LIBRARY_PATH=${OPENSPLICE_PREFIX}/lib:\$DYLD_LIBRARY_PATH"\n)
+  file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/setup.sh "export DYLD_LIBRARY_PATH=${OPENSPLICE_PREFIX}/lib:\$DYLD_LIBRARY_PATH\n")
 endif()
 
 include(FindPackageHandleStandardArgs)
