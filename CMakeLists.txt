@@ -3,12 +3,17 @@ cmake_minimum_required(VERSION 2.8)
 project(opensplice)
 
 # Hacky, but will work for now
+math(EXPR BITS "8*${CMAKE_SIZEOF_VOID_P}")
 if(APPLE)
   set(platform "x86_64.darwin10_clang-release")
 elseif(WIN32)
   message(FATAL_ERROR "Windows not yet supported")
 else()
-  set(platform "x86_64.linux2.6-release")
+  if (BITS EQUAL 64)
+    set(platform "x86_64.linux2.6-release")
+  else (BITS EQUAL 64)
+    set(platform "x86.linux2.6-release")
+  endif()
 endif()
 
 # To build, run our bash wrapper script
