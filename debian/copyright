@@ -1,0 +1,9 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: opensplice
+Upstream-Contact: info@prismtech.com
+Source: http://www.prismtech.com/opensplice
+
+Files: *
+Copyright: 2013 PrismTech Limited and its licensees
+License: LGPL3
+ See '/usr/share/common-licenses/LGPL-3'.

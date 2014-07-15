@@ -1,0 +1,42 @@
+Source: opensplice
+Standards-Version: 3.9.4
+Maintainer: Brian Gerkey <gerkey@osrfoundation.org>
+Section: science
+Priority: extra
+Build-Depends: cmake,
+               build-essential,
+               debhelper (>= 8.0.0),
+               gawk,
+               flex,
+               bison,
+               perl,
+               devscripts
+Vcs-Browser: https://github.com/osrf/opensplice
+Vcs-Git: git://github.com/osrf/opensplice.git
+Homepage: http://www.prismtech.com/opensplice
+
+Package: libopensplice63-dev
+Architecture: any
+Section: libdevel
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Multi-Arch: same
+Conflicts: 
+Provides: 
+Description: This is the OpenSplice DDS Community Edition source repository. - development
+ For build & installation instructions please see 
+ http://www.prismtech.com/opensplice/opensplice-dds-community/building
+ http://www.opensplice.org/
+
+Package: libopensplice63
+Architecture: any
+Section: libs
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Multi-Arch: same
+Conflicts: 
+Provides: 
+Description: This is the OpenSplice DDS Community Edition source repository. - development
+ For build & installation instructions please see 
+ http://www.prismtech.com/opensplice/opensplice-dds-community/building
+ http://www.opensplice.org/

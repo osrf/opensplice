@@ -1,0 +1,17 @@
+opensplice (6.3.4-1~trusty) trusty; urgency=low
+
+  * Release 6.3.4-1
+
+ -- Esteve Fernandez <esteve@osrfoundation.org>  Tue, 15 Jul 2014 17:59:31 +0200
+
+libopensplice63 (6.3.0-3~trusty) precise; urgency=high
+ 
+  * Release 6.3.0-3
+ 
+ -- Brian Gerkey <gerkey@osrfoundation.org>  Mon, 14 Jul 2014 11:48:00 -0700
+
+opensplice (6.3.0-1~raring) precise; urgency=high
+ 
+  * Release 6.3.0-1
+ 
+ -- Brian Gerkey <gerkey@osrfoundation.org>  Fri, 14 Feb 2014 11:48:00 -0700
