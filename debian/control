@@ -10,7 +10,8 @@ Build-Depends: cmake,
                flex,
                bison,
                perl,
-               devscripts
+               devscripts,
+               cdbs
 Vcs-Browser: https://github.com/osrf/opensplice
 Vcs-Git: git://github.com/osrf/opensplice.git
 Homepage: http://www.prismtech.com/opensplice
