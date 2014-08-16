@@ -29,7 +29,7 @@ elseif(${lang} STREQUAL "CXX")
   set(OPENSPLICE_INCLUDE_DIRS ${OPENSPLICE_INCLUDE_DIR})
 endif()
 
-set(c_libs cmxml commonserv dcpsgapi dcpssac ddsconfparser ddsconf ddsdatabase ddsi2 ddskernel ddsloccollections ddslocutil ddsosnet ddsos ddsserialization ddsuser ddsutil durability spliced)
+set(c_libs cmxml commonserv dcpsgapi dcpssac ddsconfparser ddsconf ddsdatabase ddsi2 ddskernel ddsosnet ddsos ddsserialization ddsuser ddsutil durability spliced)
 set(cxx_libs ${c_libs} dcpsisocpp dcpssacpp)
 
 if(${lang} STREQUAL "C")
