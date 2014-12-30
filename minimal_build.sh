@@ -11,7 +11,12 @@ make install
 set -x
 rm -rf install/minimal
 mkdir -p install/minimal
-cp -aL lib/* install/minimal/lib
+mkdir -p install/minimal/lib
+cp -aL lib/*/* install/minimal/lib
+pushd .
+cd install/minimal/lib
+for f in *so; do mv -v $f $f.6.4; ln -v -s $f.6.4 $f;done
+popd
 mkdir -p install/minimal/include
 cp -a install/HDE/*/include install/minimal/include/opensplice
 mkdir -p install/minimal/etc
