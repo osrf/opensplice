@@ -1,5 +1,6 @@
 usr/include/*
 usr/lib/lib*.a
 usr/lib/lib*.so
+usr/share/opensplice/cmake/opensplice-config.cmake
 #usr/lib/pkgconfig/*
 #usr/share/pkgconfig/*
