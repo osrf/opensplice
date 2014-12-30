@@ -22,7 +22,8 @@ Section: libdevel
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Multi-Arch: same
-Conflicts: 
+Conflicts: libopensplice63
+Replaces: libopensplice63
 Provides: 
 Description: This is the OpenSplice DDS Community Edition source repository. - development
  For build & installation instructions please see 
@@ -35,7 +36,8 @@ Section: libs
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Multi-Arch: same
-Conflicts: 
+Conflicts: libopensplice63
+Replaces: libopensplice63
 Provides: 
 Description: This is the OpenSplice DDS Community Edition source repository. - development
  For build & installation instructions please see 
