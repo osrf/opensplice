@@ -5,23 +5,22 @@ improve the build process.
 
 ## Build instructions for Linux
 
-1. Install prerequisites
+1. Install prerequisites.  If you find something missing here, please add it.
 
-    # If you find something missing here, please add it.
-    sudo apt-get install build-essential flex bison
+        sudo apt-get install build-essential flex bison
 
-2. Create a directory to build in (note that the directory `build` exists as
+1. Create a directory to build in (note that the directory `build` exists as
 part of the OpenSplice source tree):
 
-    mkdir build2
-    cd build2
+        mkdir build2
+        cd build2
 
-3. Configure and build.  This looks like CMake, but that's just a thin wrapper
+1. Configure and build.  This looks like CMake, but that's just a thin wrapper
 around OpenSplice's own, custom build tool.  After running their build, we
 heuristically collect the resulting artifacts into `../install/minimal`.
 
-    cmake ..
-    make
+        cmake ..
+        make
 
 ## Running programs
 
