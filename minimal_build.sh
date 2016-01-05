@@ -4,6 +4,8 @@
 #echo "Press any key to continue (and hope for the best)."
 #read
 
+set -e
+
 # Allow the caller to specify the build type on the command line
 . configure $*
 make
