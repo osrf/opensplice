@@ -15,6 +15,8 @@ else()
     set(platform "x86.linux-release")
   elseif (ARCH EQUAL "armv7")
     set(platform "armv7l.linux-release")
+  elseif (ARCH EQUAL "armv8") # aarch64 works with armv7l profile
+    set(platform "armv7l.linux-release")
   else (ARCH EQUAL "i386")
     set(platform "x86.linux-release")
   endif()
