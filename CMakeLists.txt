@@ -2,17 +2,21 @@
 cmake_minimum_required(VERSION 2.8)
 project(opensplice)
 
-# Hacky, but will work for now
-math(EXPR BITS "8*${CMAKE_SIZEOF_VOID_P}")
+include (TargetArch.cmake)
+target_architecture(ARCH)
+message(STATUS "Building for arch: ${ARCH}")
+
 if(APPLE)
   set(platform "x86_64.darwin10_clang-release")
 elseif(WIN32)
   message(FATAL_ERROR "Windows not yet supported")
 else()
-  if (BITS EQUAL 64)
+  if (ARCH EQUAL "i386")
     set(platform "x86_64.linux-release")
-  else (BITS EQUAL 64)
+  else (ARCH EQUAL "x86_64")
     set(platform "x86.linux-release")
+  else (ARCH EQUAL "armv7")
+    set(platform "armv7l.linux-release")
   endif()
 endif()
 
