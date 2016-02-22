@@ -12,7 +12,7 @@ elseif(WIN32)
   message(FATAL_ERROR "Windows not yet supported")
 else()
   if (ARCH EQUAL "x86_64")
-    set(platform "x86.linux-release")
+    set(platform "x86_64.linux-release")
   elseif (ARCH EQUAL "armv7")
     set(platform "armv7l.linux-release")
   elseif (ARCH EQUAL "armv8") # aarch64 works with armv7l profile
