@@ -22,6 +22,8 @@ heuristically collect the resulting artifacts into `../install/minimal`.
         cmake ..
         make
 
+  If you are running into a problem with the target `cppgen` the workaround described in https://github.com/PrismTech/opensplice/issues/18 might help.
+
 ## Running programs
 
 The above procedure should build the libraries and the demos (of which there
