@@ -7,7 +7,7 @@ improve the build process.
 
 1. Install prerequisites.  If you find something missing here, please add it.
 
-        sudo apt-get install build-essential flex bison
+        sudo apt-get install build-essential flex bison gawk
 
 1. Create a directory to build in (note that the directory `build` exists as
 part of the OpenSplice source tree):
