@@ -4,23 +4,28 @@ project(opensplice)
 
 include (TargetArch.cmake)
 target_architecture(ARCH)
-message(STATUS "Building for arch: ${ARCH}")
 
 if(APPLE)
   set(platform "x86_64.darwin10_clang-release")
 elseif(WIN32)
   message(FATAL_ERROR "Windows not yet supported")
 else()
-  if (ARCH EQUAL "x86_64")
-    set(platform "x86_64.linux-release")
-  elseif (ARCH EQUAL "armv7")
-    set(platform "armv7l.linux-release")
-  elseif (ARCH EQUAL "aarch64") # aarch64 works with armv7l profile
-    set(platform "armv7l.linux-release")
-  else (ARCH EQUAL "i386")
+  if (ARCH STREQUAL "i386")
     set(platform "x86.linux-release")
+  elseif (ARCH STREQUAL "armv7")
+    set(platform "armv7l.linux-release")
+  elseif (ARCH STREQUAL "armv8") # armv8 works with armv7l profile
+    set(platform "armv7l.linux-release")
+  elseif (ARCH STREQUAL "aarch64") # aarch64 works with armv7l profile
+    set(platform "armv7l.linux-release")
+  elseif (ARCH STREQUAL "x86_64")
+    set(platform "x86_64.linux-release")
+  else()
+    message(FATAL_ERROR "Plaform unsupported: ${ARCH}")
   endif()
 endif()
+
+message(STATUS "Building for arch: ${ARCH} (profile: ${platform})")
 
 # To build, run our bash wrapper script
 add_custom_target(build ALL
