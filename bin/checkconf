@@ -527,6 +527,9 @@ make_check ()
 
 gsoap_check ()
 {
+    # disabling the cmsoap subsystem is not sufficient
+    return 0
+
     echo -n "GSOAP: "
     # Check GSOAPHOME directory first
     if [ -n "$GSOAPHOME" ]
