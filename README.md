@@ -1,23 +1,43 @@
-## Overview
-OpenSplice a full implementaiton of the **OMG DDS Standard** licensed under **Apache 2**. The DDS standard is used today across a large range of application domains ranging from autonomous vehicles, medical devices, robotic platforms, software defined networking, network switches, IoT Gateways, military and aerospace systems, Air Traffic Control and Management, smart grids, smart farms, etc. 
+# OpenSplice
 
+This is a fork of PrismTech's OpenSplice package, with changes primarily to
+improve the build process.
 
-## Learning Material
-Below are a few links to learning material that will get you started quickly with OpenSplice and DDS.
+## Build instructions for Linux
 
-- [The DDS Tutorial Booklet](http://bit.ly/2sXqbOG)
-- [DDS Tutorial Slides](http://bit.ly/dds-onem2m)
-- [DDS Slideshares](http://bit.ly/2sXW6yo)
-- [DDS In Action Channel](https://vimeo.com/channels/dds)
+1. Install prerequisites.  If you find something missing here, please add it.
 
+        sudo apt-get install build-essential flex bison gawk
 
-## Open Source Add-ons 
-There are plenty of Open Source add-ons for OpenSplice and they keep growing almost daily. The main place to look for add one and extensions are [PrismTech's GitHub](https://github.com/prismtech) repositories. Beside this, below are a few notable extensions:
+1. Create a directory to build in (note that the directory `build` exists as
+part of the OpenSplice source tree):
 
-- **[DDS Tutorial Examples](http://bit.ly/1oAvXhz)**
-- **[C++11 Extensions](http://bit.ly/dds-cpp11)**: Support for lambda-based Data Reader listenerns 
-- **[Moliere](http://bit.ly/moliere-dds)**: [Scala](http://scala-lang.org) APIs for OpenSplice 
+        mkdir build2
+        cd build2
 
-## Related Projects
+1. Configure and build.  This looks like CMake, but that's just a thin wrapper
+around OpenSplice's own, custom build tool.  After running their build, we
+heuristically collect the resulting artifacts into `../install/minimal`.
 
-- The version 2 of the  [Robot Operating System](http://www.ros.org) (ROS2) uses DDS as its underlying communication mechanism.
+        cmake ..
+        make
+
+  If you are running into a problem with the target `cppgen` the workaround described in https://github.com/PrismTech/opensplice/issues/18 might help.
+
+## Running programs
+
+The above procedure should build the libraries and the demos (of which there
+seems to be just one, `ishapes`).  To run a program that uses the OpenSplice
+libraries, you need to have some environment context established, both to
+find the libraries, and to let OpenSplice know where to find its configuration:
+
+    cd ../install/minimal
+    export OSPL_HOME=`pwd`
+    export PATH=$OSPL_HOME/bin:$PATH
+    export LD_LIBRARY_PATH=$OSPL_HOME/lib:$LD_LIBRARY_PATH
+    export OSPL_URI=file://$OSPL_HOME/etc/opensplice/config/ospl.xml
+
+Now you can run a demo, e.g.:
+
+    # demo_ishapes is in $OSPL_HOME/bin
+    demo_ishapes

@@ -23,7 +23,7 @@ else
     -l) odlpp_options="$odlpp_options $1 $2"; shift;;
     -*) options="$options $1";;
     *)
-       cpp $options $1 $1.$$.odl
+       cpp $options $1 > $1.$$.odl
        $WINCMD odlpp $odlpp_options $1.$$.odl
        rm -f $1.$$.odl
     ;;
