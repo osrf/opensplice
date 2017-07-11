@@ -1,5 +1,5 @@
 # Minimal CMake wrapper for the opensplice build
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.5)
 project(opensplice)
 
 include (TargetArch.cmake)
@@ -55,9 +55,9 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/install/minimal/share/
 
 # Set up CPack to produce a source tarball.
 list (APPEND CPACK_SOURCE_GENERATOR "TBZ2")
-set(CPACK_PACKAGE_VERSION "6.4.0")
+set(CPACK_PACKAGE_VERSION "6.7.0")
 set(CPACK_SOURCE_PACKAGE_FILE_NAME "${PROJECT_NAME}-${CPACK_PACKAGE_VERSION}")
 set(CPACK_PACKAGE_VERSION_MAJOR "6")
-set(CPACK_PACKAGE_VERSION_MINOR "4")
+set(CPACK_PACKAGE_VERSION_MINOR "7")
 set(CPACK_PACKAGE_VERSION_PATCH "0")
 include(CPack)

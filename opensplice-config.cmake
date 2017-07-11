@@ -16,7 +16,6 @@ else()
     message(FATAL_ERROR "Unsupported language requested: ${lang_in}; should be one of C or CXX.")
   endif()
 endif()
-  
 
 set(OPENSPLICE_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../../..)
 
@@ -29,7 +28,7 @@ elseif(${lang} STREQUAL "CXX")
   set(OPENSPLICE_INCLUDE_DIRS ${OPENSPLICE_INCLUDE_DIR})
 endif()
 
-set(c_libs cmxml commonserv dcpsgapi dcpssac ddsconfparser ddsconf ddsdatabase ddsi2 ddskernel ddsosnet ddsos ddsserialization ddsuser ddsutil durability spliced)
+set(c_libs cmxml dcpsgapi dcpssac ddsconfparser ddsconf ddsdatabase ddsi2 ddskernel ddsosnet ddsos ddsserialization ddsuser ddsutil spliced)
 set(cxx_libs ${c_libs} dcpsisocpp dcpssacpp)
 
 if(${lang} STREQUAL "C")
