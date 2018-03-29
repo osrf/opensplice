@@ -990,8 +990,8 @@ M   ospli/ubuntu1404-64a/armv7l.linux-release-nojava-marvell-inner 1 #First# non
 E   ospli/ubuntu1404-64a/arm.elinos5.2_linux64-release-thales-inner 1 #First# none
 M   ospli/ubuntu1404-64a/x86_64.WRlinux7_gcc-release-inner 1 #First# none
 
-M   ospli/ubuntu1404-64a/trixel-armv7at2-vfp-neon.WRlinux7_gcc-release-inner 1 #First# none
-E   ospli/ubuntu1404-64a/trixel-armv7at2-vfp-neon.WRlinux7_gcc-dev-inner 1 #First# none
+M   ospli/ubuntu1404-64a/armv7at2-vfp-neon.WRlinux7_gcc-release-inner 1 #First# none
+E   ospli/ubuntu1404-64a/armv7at2-vfp-neon.WRlinux7_gcc-dev-inner 1 #First# none
 
 E   ospli/ubuntu1604-32a/x86.linux-release 120 #First# none
 E   ospli/ubuntu1604-32a/x86.linux-release-inner 120 #First# none
@@ -1037,6 +1037,16 @@ E   ospli/rhel5a/PPC604.vxworks6.6-release-inner 1 #First# none
 E   ospli/priva-debian7/armv7l.linux-release-inner 1 #First# none
 E   ospli/priva-debian7/armv7l.linux-debug-inner 1 #First# none
 E   ospli/priva-debian7/armv7l.linux-dev-inner 1 #First# none
+
+E   ospli/macmini/x86_64.darwin10_clang-release-inner 1 #First# none
+E   ospli/macmini/x86_64.darwin10_clang-release-notest-inner 1 #First# none
+E   ospli/macmini/x86_64.darwin10_clang-release-examples-inner 1 #First# none
+E   ospli/macmini/x86_64.darwin10_clang-release-examples-dbt-inner 1 #First# none
+E   ospli/macmini/x86_64.darwin10_clang-dev-inner 1 #First# none
+
+E   ospli/debian8-64a.testnet.ptnl/armv7a_lafp_neon.linux-release-inner 1 #First# none
+E   ospli/debian8-64a.testnet.ptnl/armv7a_lafp_neon.linux-debug-inner 1 #First# none
+E   ospli/debian8-64a.testnet.ptnl/armv7a_lafp_neon.linux-dev-inner 1 #First# none
 
 ################################# end First Runs #############################
 

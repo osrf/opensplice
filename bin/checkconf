@@ -551,12 +551,31 @@ gsoap_check ()
         pathcheck soapcpp2
         if [ $? != 0 ]
         then
-            echo "Error - Not found"
-            return 1
+            if [ -n "$OSPL_OUTER_HOME" ]
+            then
+                echo "Error - Not found"
+                return 1
+            else
+                echo "Warning - Not found, cmsoap will not be built"
+                unset_var INCLUDE_SERVICES_CMSOAP
+                return 0
+            fi
         fi
         SOAPCPP2_EXE="$PATHCHECK_FOUND"
         GSOAPHOME1=`dirname "$SOAPCPP2_EXE"`
         GSOAPHOME=`dirname "$GSOAPHOME1"`
+
+        if [ -z "$OSPL_OUTER_HOME" ]
+        then
+            GSOAP_SRC_FILE=$GSOAPHOME/include/stdsoap2.c
+            if [ ! -f $GSOAP_SRC_FILE ]
+            then
+                echo "Warning - Not found, cmsoap will not be built"
+                echo "   file $GSOAP_SRC_FILE not found"
+                unset_var INCLUDE_SERVICES_CMSOAP
+                return 0
+            fi
+        fi
     fi
     LD_LIBRARY_PATH="$GSOAPHOME/lib:$LD_LIBRARY_PATH"
 
@@ -571,6 +590,7 @@ gsoap_check ()
             GSOAP_VERSION=`${SOAPCPP2} -v 2>&1 | sed -e '/^$/d' | head -n1 | grep -o '\([0-9]\.\)\+[0-9 a-z]*'`
         fi
     fi
+
     #if [ "$GSOAP_VERSION" != "2.7.8c" ]
     #then
     #    echo "Error - Only gsoap version 2.7.8c is supported"
@@ -720,12 +740,14 @@ javac_check ()
     fi
 
     # Darwin hack
-    case $host in
-        Darwin*)
+    if [ -z "$JAVA_HOME" ] ; then
+        case $host in
+            Darwin*)
             javac_check_darwin
             return
             ;;
-    esac
+        esac
+    fi
 
     # Check JAVA_HOME directory first
     if [ -n "$JAVA_HOME" ]
@@ -814,6 +836,9 @@ javac_check ()
                 JAVA_PATH_EXT=i386
             fi
             ;;
+	Darwin)
+	    LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$JAVA_HOME/jre/lib/server"
+	    ;;
         SunOS)
             JAVA_PATH_EXT=sparc
             ;;

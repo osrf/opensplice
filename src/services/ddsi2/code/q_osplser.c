@@ -490,7 +490,7 @@ static sertopic_t deftopic_unl (const char *name, C_STRUCT(v_topic) const * cons
   /* Reuse known definition, if available; compare is on name+typeame,
      just in case. But we forget about the keys ... */
   name_typename = os_malloc (strlen (name) + 1 + strlen (typename) + 1);
-  os_sprintf (name_typename, "%s/%s", name, typename);
+  os_sprintf (name_typename, "%s;%s", name, typename);
   tp = ut_avlLookupIPath (&topictree_treedef, &topictree, name_typename, &path);
   if (tp != NULL)
   {
@@ -2066,12 +2066,7 @@ static int deserialize_prep
     default:
       return 0;
   }
-  if (hdr->options != 0)
-  {
-    /* Unless I know they're harmless or support them, can't allow
-       them. */
-    return 0;
-  }
+
   if ((*msg = v_topicMessageNew_s ((v_topic) ospl_topic)) == NULL)
     return 0;
   (*msg)->qos = NULL;
@@ -2248,12 +2243,6 @@ static int prettyprint_prep (char **dst, int *dstsize, int *swap, const char **s
       mysnprintf (dst, dstsize, "(unknown encoding)");
       *swap = 0;
       goto fail;
-  }
-  if (hdr->options != 0)
-  {
-    /* Serdata is from my serializer, which doesn't do options */
-    mysnprintf (dst, dstsize, "(no options supported)");
-    goto fail;
   }
   assert (vsrcsize >= sizeof (struct CDRHeader));
   *src = (const char *) (hdr + 1);
