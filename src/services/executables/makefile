@@ -15,9 +15,9 @@ ifeq ($(INCLUDE_SERVICES_DURABILITY),yes)
 SUBSYSTEMS += durability
 endif
 
-ifeq ($(INCLUDE_SERVICES_CMSOAP),yes)
-SUBSYSTEMS += cmsoap
-endif
+#ifeq ($(INCLUDE_SERVICES_CMSOAP),yes)
+#SUBSYSTEMS += cmsoap
+#endif
 
 ifeq ($(INCLUDE_SERVICES_NWBRIDGE),yes)
 SUBSYSTEMS += nwbridge
