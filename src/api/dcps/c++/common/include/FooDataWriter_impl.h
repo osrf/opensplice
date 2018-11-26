@@ -1,8 +1,9 @@
 /*
- *                         OpenSplice DDS
+ *                         Vortex OpenSplice
  *
- *   This software and documentation are Copyright 2006 to TO_YEAR PrismTech
- *   Limited, its affiliated companies and licensors. All rights reserved.
+ *   This software and documentation are Copyright 2006 to TO_YEAR ADLINK
+ *   Technology Limited, its affiliated companies and licensors. All rights
+ *   reserved.
  *
  *   Licensed under the Apache License, Version 2.0 (the "License");
  *   you may not use this file except in compliance with the License.
@@ -26,15 +27,24 @@
 #include "cpp_dcps_if.h"
 
 namespace DDS {
+
+    class CDRSample;
+
     namespace OpenSplice {
+
+        class FooCdrDataWriter;
 
         class OS_API FooDataWriter_impl
             : public DDS::OpenSplice::DataWriter
         {
+            friend class DDS::OpenSplice::TypeSupportMetaHolder;
+            friend class DDS::OpenSplice::FooCdrDataWriter;
 
         private:
             DDS::OpenSplice::cxxCopyIn copyIn;
             DDS::OpenSplice::cxxCopyOut copyOut;
+            u_writerCopy writerCopy;
+            void *cdrMarshaler;
             DDS::OpenSplice::DomainParticipant *participant;
 
             static v_copyin_result
@@ -42,6 +52,21 @@ namespace DDS {
                 c_type type,
                 void *data,
                 void *to);
+
+            static v_copyin_result
+            rlReq_cdrCopyIn (
+                c_type type,
+                void *data,
+                void *to);
+
+            static v_copyin_result
+             rlReq_cdrEncCopyIn (
+                 c_type type,
+                 void *data,
+                 void *to);
+
+            ::DDS::ReturnCode_t
+            nlReq_init_cdr();
 
         protected:
             FooDataWriter_impl();
@@ -55,7 +80,9 @@ namespace DDS {
                 DDS::OpenSplice::Topic *a_topic,
                 const char *name,
                 DDS::OpenSplice::cxxCopyIn copyIn,
-                DDS::OpenSplice::cxxCopyOut copyOut);
+                DDS::OpenSplice::cxxCopyOut copyOut,
+                u_writerCopy writerCopy,
+                void *cdrMarshaler);
 
             virtual DDS::ReturnCode_t
             wlReq_deinit();
@@ -121,6 +148,11 @@ namespace DDS {
             ::DDS::InstanceHandle_t
             lookup_instance (
                 const void * instance_data) THROW_ORB_EXCEPTIONS;
+
+            ::DDS::ReturnCode_t
+             write_cdr(
+                const DDS::CDRSample & sample,
+                ::DDS::InstanceHandle_t handle) THROW_ORB_EXCEPTIONS;
         };
     } /* namespace OpenSplice */
 } /* namespace DDS */

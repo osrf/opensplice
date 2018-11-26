@@ -3,6 +3,8 @@ import os
 import json
 import shutil
 import subprocess
+import fileinput
+import platform
 import time
 from shutil import copy
 import example_logparser
@@ -55,7 +57,6 @@ class dbmsconnect (Example):
         currPath = os.getcwd()
 
         try:
-
             self.exdir = "servicesdbmsconnectSQLCPPODBC"
 
             exSfx = ""
@@ -69,10 +70,16 @@ class dbmsconnect (Example):
             msg = "NONE"
             result = "PASS"
 
+            dsn = self.odbcMsgBoard_params[0]
+            os.putenv("MY_DSN", dsn);
+            os.environ["MY_DSN"]= dsn;
+
             os.putenv("OSPL_URI", self.uri)
             os.environ["OSPL_URI"] = self.uri
             
             try:
+                self.convertConfig()
+
                 self.setLogPathAndLogs("", "")
                 odbcMsgBoardLog = os.path.join(self.pPath, 'odbcMsgBoard.log')
                 odbcChatter1Log = os.path.join(self.pPath, 'odbcChatter1.log')
@@ -235,4 +242,22 @@ class dbmsconnect (Example):
         except Exception as ex:
             print "Unexpected exception ", str(ex)   
         finally:
-            os.chdir(currPath)   
+            os.chdir(currPath)
+
+    def convertConfig(self):
+        if os.environ['EXRUNTYPE'] == "shm":
+            uri = self.shm_uri
+        else:
+            uri = self.sp_uri
+        fcfg = os.path.join(os.environ['OSPL_HOME'], 'examples', 'services', 'dbmsconnect', uri)
+        forig = os.path.join(os.environ['OSPL_HOME'], 'examples', 'services', 'dbmsconnect', uri+'.orig')
+        os.rename(fcfg, forig)
+        if self.host.name != "default":
+            hn = self.host.name
+        else:
+            hn = platform.uname()[1]
+        prefix = hn[:16].replace('-', '_') + '_'
+        fout = open(fcfg, "w")
+        for line in fileinput.input(forig):
+            fout.write(line.replace("Sql", prefix))
+        fout.close()

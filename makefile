@@ -29,8 +29,24 @@ ifeq ($(GCC_SUPPORTS_CPLUSPLUS11), 1)
 MPC_CISH_ARGS += --features isocpp2_cxx11=1
 endif
 
+ifeq ($(OSPL_USE_CXX11), yes)
+MPC_CISH_ARGS += --features isocpp2_cxx11=1
+endif
+
+ifeq ($(INCLUDE_API_DCPS_C99), yes)
+MPC_CISH_ARGS += --features no_c99=0
+endif
+
+.PHONY: all compile link qac analyse gcov test
+all compile link qac analyse gcov test: | mkdir
+
 include $(OSPL_HOME)/setup/makefiles/subsystem.mak
 
+.PHONY: mkdir
+mkdir:
+	-@[ -d $(SPLICE_LIBRARY_PATH) ] || mkdir -p $(SPLICE_LIBRARY_PATH)
+
+.PHONY: clean
 clean: clean_demos clean_scripts
 	@rm -rf $(OSPL_HOME)/lib/$(SPLICE_TARGET)
 	@rm -rf $(OSPL_HOME)/exec/$(SPLICE_TARGET)
@@ -84,8 +100,6 @@ doxygen:
 	doxygen ./etc/doxygen_isocpp2_face_api.cfg
 	mkdir -p ./ospl_docs/docs/java5
 	doxygen ./etc/doxygen_java5_api.cfg
-	mkdir -p ./internal_docs/isocpp
-	doxygen ./etc/doxygen_isocpp_internal.cfg
 	python ./src/api/dcps/isocpp2/predoxygen.py -i ./src/api/dcps/isocpp2/include/dds -o ./src/api/dcps/isocpp2/doxy
 	mkdir -p ./internal_docs/isocpp2
 	doxygen ./etc/doxygen_isocpp2_internal.cfg

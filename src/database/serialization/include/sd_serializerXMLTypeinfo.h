@@ -1,8 +1,9 @@
 /*
- *                         OpenSplice DDS
+ *                         Vortex OpenSplice
  *
- *   This software and documentation are Copyright 2006 to TO_YEAR PrismTech
- *   Limited, its affiliated companies and licensors. All rights reserved.
+ *   This software and documentation are Copyright 2006 to TO_YEAR ADLINK
+ *   Technology Limited, its affiliated companies and licensors. All rights
+ *   reserved.
  *
  *   Licensed under the Apache License, Version 2.0 (the "License");
  *   you may not use this file except in compliance with the License.
@@ -31,7 +32,15 @@
 #endif
 /* !!!!!!!!NOTE From here no more includes are allowed!!!!!!! */
 
+#if defined (__cplusplus)
+extern "C" {
+#endif
+
 OS_API sd_serializer sd_serializerXMLTypeinfoNew(c_base base, c_bool escapeQuote) __nonnull_all__ __attribute_warn_unused_result__;
+
+#if defined (__cplusplus)
+}
+#endif
 
 #undef OS_API
 

@@ -1,8 +1,9 @@
 /*
- *                         OpenSplice DDS
+ *                         Vortex OpenSplice
  *
- *   This software and documentation are Copyright 2006 to TO_YEAR PrismTech
- *   Limited, its affiliated companies and licensors. All rights reserved.
+ *   This software and documentation are Copyright 2006 to TO_YEAR ADLINK
+ *   Technology Limited, its affiliated companies and licensors. All rights
+ *   reserved.
  *
  *   Licensed under the Apache License, Version 2.0 (the "License");
  *   you may not use this file except in compliance with the License.
@@ -25,16 +26,22 @@
 #include "cpp_dcps_if.h"
 
 namespace DDS {
+
+   class CDRSample;
+
     namespace OpenSplice {
 
     class FooDataReaderView_impl;
+    class FooCdrDataReader;
 
     class OS_API FooDataReader_impl
         : public DDS::OpenSplice::DataReader
         {
         friend class DDS::OpenSplice::FooDataReaderView_impl;
+        friend class DDS::OpenSplice::TypeSupportMetaHolder;
         friend class DDS::OpenSplice::ReadCondition;
         friend class DDS::OpenSplice::QueryCondition;
+        friend class DDS::OpenSplice::FooCdrDataReader;
 
         public:
         typedef void *(*cxxDataSeqAlloc) (void *, DDS::ULong);
@@ -54,6 +61,8 @@ namespace DDS {
             const char *name,
             DDS::OpenSplice::cxxCopyIn copyIn,
             DDS::OpenSplice::cxxCopyOut copyOut,
+            DDS::OpenSplice::cxxReaderCopy readerCopy,
+            void *cdrMarshaler,
             cxxDataSeqAlloc dataSeqAlloc,
             cxxDataSeqLength dataSeqLength,
             cxxDataSeqGetBuffer dataSeqGetBuffer,
@@ -177,6 +186,20 @@ namespace DDS {
         ::DDS::InstanceHandle_t lookup_instance (
             const void * instance) THROW_ORB_EXCEPTIONS;
 
+        ::DDS::ReturnCode_t read_cdr(
+            ::DDS::CDRSample & received_data,
+            ::DDS::SampleInfo & info_seq,
+            ::DDS::SampleStateMask sample_states,
+            ::DDS::ViewStateMask view_states,
+            ::DDS::InstanceStateMask instance_states) THROW_ORB_EXCEPTIONS;
+
+        ::DDS::ReturnCode_t take_cdr (
+            ::DDS::CDRSample & received_data,
+            ::DDS::SampleInfo & info_seq,
+            ::DDS::SampleStateMask sample_states,
+            ::DDS::ViewStateMask view_states,
+            ::DDS::InstanceStateMask instance_states) THROW_ORB_EXCEPTIONS;
+
         DDS::Long
         rlReq_get_workers();
 
@@ -194,14 +217,33 @@ namespace DDS {
             void * received_data,
             ::DDS::SampleInfoSeq & info_seq);
 
+        ::DDS::ReturnCode_t flush_cdr (
+            void * samplesList,
+            void * received_data,
+            ::DDS::SampleInfo & info);
+
         ::DDS::ReturnCode_t actualFlush (
             void * samplesList,
             void * received_data,
             ::DDS::SampleInfoSeq & info_seq);
 
+        static void copySampleOut (
+            void *sample,
+            void *info,
+            void *arg);
+
+        static void copyCDRSampleOut (
+            void *sample,
+            void * info,
+            void *arg);
+
         private:
         struct Implementation;
         Implementation *pimpl;
+
+        ::DDS::ReturnCode_t
+             wlReq_init_cdr();
+
         };
     } /* namespace OpenSplice */
 } /* namespace DDS */

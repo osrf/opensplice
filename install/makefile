@@ -29,7 +29,15 @@ ifeq (vxworks6,$(findstring vxworks6,$(SPLICE_TARGET))) # if VxWorks 6.x
    MPC_CISH_ARGS += "--noreldefs"
 endif
 
+ifeq ($(INCLUDE_API_DCPS_C99), yes)
+MPC_CISH_ARGS += --features no_c99=0
+endif
+
 ifeq ($(GCC_SUPPORTS_CPLUSPLUS11), 1)
+MPC_CISH_ARGS += --features isocpp2_cxx11=1
+endif
+
+ifeq ($(OSPL_USE_CXX11), yes)
 MPC_CISH_ARGS += --features isocpp2_cxx11=1
 endif
 
@@ -70,13 +78,13 @@ examplempc:
 	   magic_make.pl --nomake --noclean --check-mpc --type $(MPC_CISH_TYPE_TO_GEN) $(MPC_CISH_ARGS2) --ospl-home "$(GEN_OSPL_HOME)" HDE/$(HDE_SUBDIR)$(HDE_SUBDIR_SUFFIX)/examples/examples.mwc
 	   magic_make.pl --nomake --noclean --check-mpc --type $(MPC_CISH_TYPE_TO_GEN) $(MPC_CISH_ARGS2) --ospl-home "$(GEN_OSPL_HOME)" HDE/$(HDE_SUBDIR)$(HDE_SUBDIR_SUFFIX)/examples/examples_simple.mwc
         endif
-	magic_make.pl --nomake --noclean --check-mpc --type $(MPC_CISH_TYPE_TO_GEN) $(MPC_CISH_ARGS) --ospl-home "$(GEN_OSPL_HOME)" HDE/$(HDE_SUBDIR)$(HDE_SUBDIR_SUFFIX)/custom_lib
+	magic_make.pl --nomake --noclean --check-mpc --incdeb --type $(MPC_CISH_TYPE_TO_GEN) $(MPC_CISH_ARGS) --ospl-home "$(GEN_OSPL_HOME)" HDE/$(HDE_SUBDIR)$(HDE_SUBDIR_SUFFIX)/custom_lib
 
 demosmpc:
 	mwc.pl --type $(MPC_CISH_TYPE_TO_GEN) $(MPC_CISH_ARGS) --ospl-home "$(GEN_OSPL_HOME)" HDE/$(HDE_SUBDIR)$(HDE_SUBDIR_SUFFIX)/demos/iShapes -value_template "configurations = $(ISHAPES_CONFIG)"
 
 clean:
-	@rm -rf HDE RTS VC STE
+	@rm -rf HDE RTS VC STE DRE
 	@rm -f x86*.xml
 	@rm -f x86_64*.xml
 

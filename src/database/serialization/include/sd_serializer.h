@@ -1,8 +1,9 @@
 /*
- *                         OpenSplice DDS
+ *                         Vortex OpenSplice
  *
- *   This software and documentation are Copyright 2006 to TO_YEAR PrismTech
- *   Limited, its affiliated companies and licensors. All rights reserved.
+ *   This software and documentation are Copyright 2006 to TO_YEAR ADLINK
+ *   Technology Limited, its affiliated companies and licensors. All rights
+ *   reserved.
  *
  *   Licensed under the Apache License, Version 2.0 (the "License");
  *   you may not use this file except in compliance with the License.
@@ -33,6 +34,10 @@
 #define OS_API OS_API_IMPORT
 #endif
 /* !!!!!!!!NOTE From here no more includes are allowed!!!!!!! */
+
+#if defined (__cplusplus)
+extern "C" {
+#endif
 
 /** \brief \b sd_serializedData is a class encapsulating the serialized data
  *            resulting from the serialization funtion. It is used by
@@ -88,6 +93,10 @@ sd_serializerLastValidationMessage(
 OS_API c_char *
 sd_serializerLastValidationLocation(
     sd_serializer _this) __nonnull_all__;
+
+#if defined (__cplusplus)
+}
+#endif
 
 #undef OS_API
 
