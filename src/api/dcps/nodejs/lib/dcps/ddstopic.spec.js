@@ -107,22 +107,22 @@ const enum_typename = 'basic::module_Enum2::Enum2_struct';
 const enum_keys = 'long1';
 
 const enum_xml2 = '<MetaData version="1.0.0">' +
-'<Module name="FarmGraph">' +
-  '<Enum name="FarmEnumType">' +
-    '<Element name="PROCESSING_AREA" value="0"/>' +
-    '<Element name="TCS_AREA" value="1"/>' +
-    '<Element name="MULTI_COW_AREA" value="2"/>' +
-    '<Element name="HIGH_PRIORITY_AREA" value="3"/>' +
-    '<Element name="BLOCKING_GATE" value="4"/>' +
+'<Module name="AGraph">' +
+  '<Enum name="AEnumType">' +
+    '<Element name="Q_AREA" value="0"/>' +
+    '<Element name="R_AREA" value="1"/>' +
+    '<Element name="S_AREA" value="2"/>' +
+    '<Element name="T_AREA" value="3"/>' +
+    '<Element name="U_AREA" value="4"/>' +
   '</Enum>' +
-  '<Struct name="FarmGraphEntity">' +
+  '<Struct name="AGraphEntity">' +
     '<Member name="id"><Long/></Member>' +
     '<Member name="robot_id"><ULong/></Member>' +
-    '<Member name="type"><Type name="FarmEnumType"/></Member>' +
+    '<Member name="type"><Type name="AEnumType"/></Member>' +
   '</Struct>' +
 '</Module>' +
 '</MetaData>';
-const enum_typename2 = 'FarmGraph::FarmGraphEntity';
+const enum_typename2 = 'AGraph::AGraphEntity';
 const enum_keys2 = 'id';
 
 const sequence_xml = '<MetaData version="1.0.0">' +
@@ -246,16 +246,16 @@ describe('Type Support tests: copyin, copyout ', function() {
       enum_keys2,
       enum_xml2
     );
-    let enumFarm = enumTS2.getClass('FarmGraph::FarmEnumType');
+    let enumA = enumTS2.getClass('AGraph::AEnumType');
 
     expect(enumTS2).is.not.null;
     expect(enumTS2).instanceof(ddstopic.TypeSupport);
-    expect(enumFarm).is.not.null;
+    expect(enumA).is.not.null;
 
     let jsData = {
       id: 16,
       robot_id: 42,
-      type: enumFarm.get('MULTI_COW_AREA').value,
+      type: enumA.get('S_AREA').value,
     };
 
     let copyInBuf = enumTS2.copyin(jsData);
@@ -530,15 +530,15 @@ describe('Type Support: Writing and reading', function() {
       enum_keys2,
       enum_xml2
     );
-    let enumFarm = enumTypeSupport.getClass('FarmGraph::FarmEnumType');
-    expect(enumFarm).is.not.null;
+    let enumA = enumTypeSupport.getClass('AGraph::AEnumType');
+    expect(enumA).is.not.null;
 
     let jsData4 = {
       id: 16,
       robot_id: 42,
-      type: enumFarm.get('MULTI_COW_AREA').value,
+      type: enumA.get('S_AREA').value,
     };
-    testSampleTopic2(enumTypeSupport, 'EnumFarm', jsData4);
+    testSampleTopic2(enumTypeSupport, 'EnumA', jsData4);
 
     done();
   });
