@@ -38,7 +38,7 @@ message(STATUS "Building for arch: ${ARCH} (profile: ${platform})")
 
 # To build, run our bash wrapper script
 add_custom_target(build ALL
-                  COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/minimal_build.sh ${platform}
+                  COMMAND ${CMAKE_COMMAND} -E env MAKE="$(MAKE)" ${CMAKE_CURRENT_SOURCE_DIR}/minimal_build.sh ${platform}
                   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 # To install, cherry-pick some stuff
